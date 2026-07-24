@@ -18,7 +18,8 @@ In Live Edit and wildcards Extra Settings, you can then pick which Sections you 
 {section} vs. {prompt}
 
 If you use a Style that has multiple {prompt} keywords inside the vanilla Style-dropdown, the main propmt gets duplicated over every {prompt} keyword seperately.
-If you decide to use {section} instead, remember that style won't be split if it comes from vanilla Style-dropdown. In eyes of the extension both {prompt} and {section} are interchangeable.
+If you decide to use {section} instead, remember that styles inside vanilla Style-dropdown won't be split and all {sections} keywords are removed. 
+In eyes of the extension both {prompt} and {section} are interchangeable.
 
 
 
