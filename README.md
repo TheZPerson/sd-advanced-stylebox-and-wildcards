@@ -18,11 +18,20 @@ In Live Edit and wildcards Extra Settings, you can then pick which Sections you 
 {section} vs. {prompt}
 
 If you use a Style that has multiple {prompt} keywords inside the vanilla Style-dropdown, the main propmt gets duplicated over every {prompt} keyword seperately.
-If you decide to use {section} instead, remember that styles inside vanilla Style-dropdown won't be split and all {sections} keywords are removed. 
+This issue can be averted by using {section} keyword instead. When using {section}-keyword inside vanilla Style-dropdown, these styles are treated like  normal un-splitted styles and {section} -keywords get removed.
 In eyes of the extension both {prompt} and {section} are interchangeable.
 
+Main Prompt: An awesome prompt with quality tags and stuff.
 
+Style A: Style of all {prompt} character prompts that you need {prompt} and whatever else you want
 
+Style B: Style of all {section} character prompts that you need {section} and whatever else you want.
+
+Result:
+
+Result A: Style of all An awesome prompt with quality tags and stuff. character prompts that you need An awesome prompt with quality tags and stuff. and whatever else you want
+
+Result B: Style of all character prompts that you need and whatever else you want. An awesome prompt with quality tags and stuff
 
 
 Recommended!
