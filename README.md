@@ -10,6 +10,20 @@ I frequently find it nesessary to tweak styles to get the result I want, but to 
 With this Live Edit you can select Styles and edit them on fly, without cluttering the the main prompt box or losing the original style. 
 
 
+What are Sections?
+In vanilla WebUI if style contains {prompt} string, the UI will split the main prompt is but in that position, effectively splitting the style in 2 parts.
+This Extension takes use of that same functionality. If style contains {prompt} or original {section} keywords ,style gets seperated to seperated to Sections, 1 Section per {prompt}/{section}.
+In Live Edit and wildcards Extra Settings, you can then pick which Sections you want to apply to the prompt.
+
+{section} vs. {prompt}
+
+If you use a Style that has multiple {prompt} keywords inside the vanilla Style-dropdown, the main propmt gets duplicated over every {prompt} keyword seperately.
+If you decide to use {section} instead, remember that style won't be split if it comes from vanilla Style-dropdown. In eyes of the extension both {prompt} and {section} are interchangeable.
+
+
+
+
+
 Recommended!
 If you wan't more space for the UI, I recommend using "Insert Tool after..."´-options with "neg_prompt_row" as value.
 This will put the UI under the main prompt boxes.
