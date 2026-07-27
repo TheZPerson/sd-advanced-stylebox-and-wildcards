@@ -4,21 +4,29 @@ Extension for SD Forge Neo, it is made of two components.
 First component "Live Edit" which creates new UI with expanded Style box with lot of QoL features compared to regular style selector box. 
 Second Component is Style Wildcards, which let's user use wildcards by picking to-be randomized styles from Dropdown box.
 
+Main Features:
+
+Edit and use Dummy version of styles, without losing the originals.
+Easily convert styles to Wildcards
+Send styles to prompt the at custom insert points.
+Extract only specific parts of the style. 
+Custom Filters for individual Styles-dropdowns.
+Highly Customizable
+
 ##Live Edit
 How styles affect the image are often affected by other loras, alternative models or just AIs mood.
 I frequently find it nesessary to tweak styles to get the result I want, but to do that I must either apply the style to the prompt box or permanently modify the style. 
 With this Live Edit you can select Styles and edit them on fly, without cluttering the the main prompt box or losing the original style. 
 
-
 What are Sections?
-In vanilla WebUI if style contains {prompt} string, the UI will split the main prompt is but in that position, effectively splitting the style in 2 parts.
-This Extension takes use of that same functionality. If style contains {prompt} or original {section} keywords ,style gets seperated to seperated to Sections, 1 Section per {prompt}/{section}.
+In vanilla WebUI if style contains {prompt} string, the UI will place the main prompt in that position, effectively splitting the style in 2 parts with main prompt in the middle.
+This Extension takes use of that same functionality. If style contains {prompt} or original {section} keywords ,style gets separated to Sections, 1 new Section per {prompt}/{section}.
 In Live Edit and wildcards Extra Settings, you can then pick which Sections you want to apply to the prompt.
 
 {section} vs. {prompt}
 
 If you use a Style that has multiple {prompt} keywords inside the vanilla Style-dropdown, the main propmt gets duplicated over every {prompt} keyword seperately.
-This issue can be averted by using {section} keyword instead. When using {section}-keyword inside vanilla Style-dropdown, these styles are treated like  normal un-splitted styles and {section} -keywords get removed.
+This issue can be averted by using {section} keyword instead. When using {section}-keyword inside vanilla Style-dropdown, these styles are treated like normal un-splitted styles and {section} -keywords get removed.
 In eyes of the extension both {prompt} and {section} are interchangeable.
 
 Main Prompt: An awesome prompt with quality tags and stuff.
@@ -33,9 +41,13 @@ Result A: Style of all An awesome prompt with quality tags and stuff. character 
 
 Result B: Style of all character prompts that you need and whatever else you want. An awesome prompt with quality tags and stuff
 
+##Wildcards
+You can select any Styles that you want with Wildcard-dropdown and the script will automatically apply one of the randomly into the prompt.
+If you have Dropdown-mode enabled in Extension setting, the same style can only be used once per process. When script chooses a style it automatically removes that style from other wildcards.
+Wildcard uses same section and inject -functionalities as Live Edits. 
 
 Recommended!
-If you wan't more space for the UI, I recommend using "Insert Tool after..."´-options with "neg_prompt_row" as value.
+If you want more space for the UI, I recommend using "Insert Tool after..."´-options with "neg_prompt_row" as value.
 This will put the UI under the main prompt boxes.
 Additionally I recommend setting User Interface>UI Alternatives>Prompt Layout to "Compact".
 This way Gallery/Result Image i will be right below the Generate-Button, reducing need to scroll. 
@@ -49,7 +61,7 @@ Instead of batch using a different seed, the script makes all images of the batc
 If user doesn't already have variations enabled, script sets variations strength to 1.
 However, even at variations strength of 1, the images can look quite similar within the batch.
 
-The main reason for this problem is that if wildcards inside a batch result in different set of loras only one of sets gets actually loaded.
+The main reason for this problem is that, if wildcards inside a batch result in different set of loras, only one of sets gets actually loaded.
 This workaround is not perfect, so if you run into issues I advice just using Batch Count > 1 instead.
 
 Alternatively if you know for the fact that this won't cause issues for you, you can disable this workaround from Extensions settings.
