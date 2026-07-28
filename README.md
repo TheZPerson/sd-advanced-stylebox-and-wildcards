@@ -26,7 +26,7 @@ Manually clone this repo into your extensions folder:
 
 `git clone https://github.com/TheZPerson/sd-advanced-stylebox-and-wildcards`
 
-To ensure maximum compatibility, this extension should run as early as possible. At least before any other extension that modifies prompts.
+To ensure maximum compatibility, this extension should run as early as possible. At least before any other extension that use the prompt.
 Easiest way to do this is rename the extensions install folder to something like: 0-sd-advanced-stylebox-and-wildcards
 
 
@@ -84,11 +84,11 @@ Style: **masterpiece <lora:superMario:1>, 3d, <lora:eyesize:5> {prompt} mario, b
 
 ## {section} vs. {prompt}
 
-If you use a Style that has multiple {prompt} keywords inside the vanilla Style-dropdown, the main prompt gets duplicated over every {prompt} keyword separately.<br/>
+If you use a Style that has multiple {prompt} keywords inside the vanilla Style-Dropdown, the main prompt gets duplicated over every {prompt} keyword separately.<br/>
 
 This issue can be averted by using {section} keyword instead. <br/>
 
-When using {section}-keyword inside vanilla Style-dropdown, these styles are treated like normal un-splitted styles and {section} -keywords get removed.<br/>
+When using {section}-keyword inside vanilla Style-Dropdown, these styles are treated like normal un-splitted styles and {section} -keywords get removed.<br/>
 
 In eyes of the extension both {prompt} and {section} are interchangeable.
 
@@ -97,7 +97,7 @@ In eyes of the extension both {prompt} and {section} are interchangeable.
 
 <summary>Example</summary>
 
-Here is example of what happens when a style with multiple {prompt}/{section} gets used inside a vanilla Style dropdown.<br/>
+Here is example of what happens when a style with multiple {prompt}/{section} gets used inside a vanilla Style Dropdown.<br/>
 **Keep in mind that this does not apply to the extension itself!** 
 
 Main Prompt: <ins> **An awesome prompt with quality tags and stuff.** </ins>
@@ -131,10 +131,10 @@ Here is example Setup. (In my case, I must use Section 1 for character to avoid 
 
 
 ## UI Recommendation
-If you want more space for the UI, I recommend using "Insert Tool after..."´-options with "neg_prompt_row" as value.<br/>
+If you want more space for the UI, I recommend using "UI Insertion"-options with "neg_prompt_row" as value.<br/>
 This will put the UI under the main prompt boxes.
 
-<img width="842" height="195" alt="2026-07-28 232553" src="https://github.com/user-attachments/assets/e301ad0c-28c7-46cc-8374-956c8c5261cc" />
+<img width="1016" height="190" alt="2026-07-28 232553" src="https://github.com/user-attachments/assets/148ba12c-1652-474b-b8c9-552f33a08e9d" />
 
 
 Additionally I recommend setting User Interface>UI Alternatives>Prompt Layout to "Compact".<br/>
