@@ -53,7 +53,7 @@ If you have **Dropout-mode** enabled in Extension setting, the same Style can on
 When script chooses a Style it automatically removes that Style from other wildcards.<br/>
 
 Result of the Wildcards are tied to the seed of the process. <br/>
-Keep in mind that changing either the prompt, Wildcards or Live Edits between first-pass and hires fix will change the hires fix result! 
+Keep in mind that if you do any changes to the prompt, Wildcards or Live Edits between first-pass and hires fix, those changes will apply to the hires fix.
 
 The maximum number of wildcards is 6. You can change the amount of visible Wildcards in the Extension settings.
 
