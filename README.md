@@ -3,7 +3,7 @@
 Extension for SD Forge Neo, it is made of two components.
 
 First component **Live Edit** which creates customized Style Drodowns with lot of QoL features compared to regular Style Dropdown.
-Second Component is **Style Wildcards**, which is a whole new way to use wildcards by simply selecting to-be randomized style from Dropdown.
+Second Component is **Style Wildcards**, which is a whole new way to use wildcards by simply selecting styles from a Dropdown.
 
 <img height="800" alt="2026-07-28 211650" src="https://github.com/user-attachments/assets/c88cd562-bd75-4a6d-9a14-fe03f1e596eb" /><br/>
 ## Main Features
