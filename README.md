@@ -52,6 +52,9 @@ You can select any Styles that you want with Wildcard-Dropdown and the script wi
 If you have **Dropout-mode** enabled in Extension setting, the same Style can only be used once per process. <br/>
 When script chooses a Style it automatically removes that Style from other wildcards.<br/>
 
+Result of the Wildcards are tied to the seed of the process. 
+Keep in mind that changing either the prompt, Wildcards or Live Edits between first-pass and hires fix will change the hires fix result! 
+
 The maximum number of wildcards is 6. You can change the amount of visible Wildcards in the Extension settings.
 
 ## What are Sections?
