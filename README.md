@@ -14,10 +14,23 @@ Main Features:
 -Highly Customizable
 -Automatic style sorting
 
+
+To ensure maximum compatibility, this extension should run as early as possible. At least before any other extension that modifies prompts.
+Easiest way to do this is rename the extensions install folder to something like: 0-sd-advanced-stylebox-and-wildcards
+
+
 ##Live Edit
 How styles affect the image are often affected by other loras, alternative models or just AIs mood.
 I frequently find it nesessary to tweak styles to get the result I want, but to do that I must either apply the style to the prompt box or permanently modify the style. 
-With this Live Edit you can select Styles and edit them on fly, without cluttering the the main prompt box or losing the original style. 
+With Live Edit you can select Styles and edit them on fly, without cluttering the the main prompt box or losing the original style. 
+
+Each style appears in their own textbox, and it is content of these textboxes that get applied to the prompt instead of the original style.
+The maximum number of Live Edits is 4. Yo can change the amount of visible Live Edits in Extension settings.
+
+##Wildcards
+You can select any Styles that you want with Wildcard-dropdown and the script will automatically apply one of the randomly into the prompt.
+If you have Dropdown-mode enabled in Extension setting, the same style can only be used once per process. When script chooses a style it automatically removes that style from other wildcards.
+The maximum number of wildcards is 6.
 
 What are Sections?
 In vanilla WebUI if style contains {prompt} string, the UI will place the main prompt in that position, effectively splitting the style in 2 parts with main prompt in the middle.
@@ -42,10 +55,7 @@ Result A: Style of all An awesome prompt with quality tags and stuff. character 
 
 Result B: Style of all character prompts that you need and whatever else you want. An awesome prompt with quality tags and stuff
 
-##Wildcards
-You can select any Styles that you want with Wildcard-dropdown and the script will automatically apply one of the randomly into the prompt.
-If you have Dropdown-mode enabled in Extension setting, the same style can only be used once per process. When script chooses a style it automatically removes that style from other wildcards.
-Wildcard uses same section and inject -functionalities as Live Edits. 
+
 
 Recommended!
 If you want more space for the UI, I recommend using "Insert Tool after..."´-options with "neg_prompt_row" as value.
