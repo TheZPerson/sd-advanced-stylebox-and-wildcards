@@ -10,9 +10,9 @@ Second Component is **Style Wildcards**, which is a whole new way to use wildcar
 
 + Edit and use Dummy version of styles, without losing the originals.
 + Easily convert styles to Wildcards
-+ Send styles to prompt the at custom insert points.
-+ Extract only specific parts of the style. 
-+ Custom Filters for individual Styles-dropdowns.
++ Apply styles to the prompt at custom insert points.
++ Extract only specific parts of a style (Sections). 
++ Custom Filters for individual Styles-Dropdowns.
 + Highly Customizable
 + Automatic style sorting
 
@@ -31,25 +31,27 @@ Easiest way to do this is rename the extensions install folder to something like
 
 
 ## Live Edit
+I am heavy user of Styles in WebUI, but they come with certain incoveniences. 
+
 How styles affect the image are often affected by other loras, alternative models or just AIs mood.<br/>
-I frequently find it necessary to tweak styles to get the result I want, but to do that I must either apply the style to the prompt box or permanently modify the style. <br/>
+I frequently find it necessary to tweak styles to get the result I want, but to do that I must either the apply the style to the prompt box or permanently modify the style. <br/>
 
 With Live Edit you can select Styles and edit them on fly, without cluttering the the main prompt box or losing the original style. 
 
-Each style will appear in their own textbox, and it is the these textboxes that get applied to the prompt, instead of the original style.<br/>
+Each style will appear in their own textbox, and it is the content of these textboxes that get applied to the prompt, instead of the original style.<br/>
 
-You can use Apply-button (🖫) to save the style, this will override the original style. <br/>
-You also create new Style by changing the name of the style with ✎-button before saving. 
+You can use Apply-button (🖫) to save the style, <ins>this will override the original style.</ins> <br/>
+You can create a new Style by changing the name of the style with ✎-button before saving with (🖫). 
 
-The maximum number of Live Edits is 4. You can change the amount of visible Live Edits in Extension settings.
+The maximum number of Live Edits is 4. You can change the amount of visible Live Edits in the Extension settings.
 
 ## Wildcards
-You can select any Styles that you want with Wildcard-dropdown and the script will automatically apply one of the randomly into the prompt.<br/>
+You can select any Styles that you want with Wildcard-Dropdown and the script will automatically apply one of the randomly into the prompt.<br/>
 
-If you have Dropdown-mode enabled in Extension setting, the same style can only be used once per process. <br/>
+If you have **Dropout-mode** enabled in Extension setting, the same style can only be used once per process. <br/>
 When script chooses a style it automatically removes that style from other wildcards.<br/>
 
-The maximum number of wildcards is 6.
+The maximum number of wildcards is 6. You can change the amount of visible Wildcards in the Extension settings.
 
 ## What are Sections?
 In vanilla WebUI, if style contains {prompt} keyword, the UI will place the main prompt in that position, effectively splitting the style in 2 parts with main prompt in the middle.<br/>
