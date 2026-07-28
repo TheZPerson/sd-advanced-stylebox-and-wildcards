@@ -1,17 +1,18 @@
 # sd-forge-advanced-stylebox-and-widlcard
 Extension for SD Forge Neo, it is made of two components.
 
-First component "Live Edit" which creates new UI with expanded Style box with lot of QoL features compared to regular style selector box. 
-Second Component is Style Wildcards, which let's user use wildcards by picking to-be randomized styles from Dropdown box.
+First component "Live Edit" which creates new UI with expanded Style Drodowns (max. 4)  with lot of QoL features compared to regular style selector box. 
+Second Component is Style Wildcards, which let's user use wildcards by picking to-be randomized styles from Dropdown box (max. 6).
 
 Main Features:
 
-Edit and use Dummy version of styles, without losing the originals.
-Easily convert styles to Wildcards
-Send styles to prompt the at custom insert points.
-Extract only specific parts of the style. 
-Custom Filters for individual Styles-dropdowns.
-Highly Customizable
+-Edit and use Dummy version of styles, without losing the originals.
+-Easily convert styles to Wildcards
+-Send styles to prompt the at custom insert points.
+-Extract only specific parts of the style. 
+-Custom Filters for individual Styles-dropdowns.
+-Highly Customizable
+-Automatic style sorting
 
 ##Live Edit
 How styles affect the image are often affected by other loras, alternative models or just AIs mood.
