@@ -1,20 +1,20 @@
 
-# sd-forge-advanced-stylebox-and-widlcard
+# sd-forge-advanced-Stylebox-and-widlcard
 Extension for SD Forge Neo, it is made of two components.
 
 First component **Live Edit** which creates customized Style Drodowns with lot of QoL features compared to regular Style Dropdown.
-Second Component is **Style Wildcards**, which is a whole new way to use wildcards by simply selecting styles from a Dropdown.
+Second Component is **Style Wildcards**, which is a whole new way to use wildcards by simply selecting Styles from a Dropdown.
 
 <img height="800" alt="2026-07-28 211650" src="https://github.com/user-attachments/assets/c88cd562-bd75-4a6d-9a14-fe03f1e596eb" /><br/>
 ## Main Features
 
-+ Edit and use Dummy version of styles, without losing the originals.
-+ Easily convert styles to Wildcards
-+ Apply styles to the prompt at custom insert points.
-+ Extract only specific parts of a style (Sections). 
++ Edit and use Dummy version of Styles, without losing the originals.
++ Easily convert Styles to Wildcards
++ Apply Styles to the prompt at custom insert points.
++ Extract only specific parts of a Style (Sections). 
 + Custom Filters for individual Styles-Dropdowns.
 + Highly Customizable
-+ Automatic style sorting
++ Automatic Style sorting
 
 ## Install
 
@@ -24,44 +24,44 @@ Or
 
 Manually clone this repo into your extensions folder:
 
-`git clone https://github.com/TheZPerson/sd-advanced-stylebox-and-wildcards`
+`git clone https://github.com/TheZPerson/sd-advanced-Stylebox-and-wildcards`
 
 To ensure maximum compatibility, this extension should run as early as possible. At least before any other extension that use the prompt.
-Easiest way to do this is rename the extensions install folder to something like: 0-sd-advanced-stylebox-and-wildcards
+Easiest way to do this is rename the extensions install folder to something like: 0-sd-advanced-Stylebox-and-wildcards
 
 
 ## Live Edit
 I am heavy user of Styles in WebUI, but they come with certain incoveniences. 
 
-How styles affect the image are often affected by other loras, alternative models or just AIs mood.<br/>
-I frequently find it necessary to tweak styles to get the result I want, but to do that I must either the apply the style to the prompt box or permanently modify the style. <br/>
+How Styles affect the image are often affected by other loras, alternative models or just AIs mood.<br/>
+I frequently find it necessary to tweak Styles to get the result I want, but to do that I must either the apply the Style to the prompt box or permanently modify the Style. <br/>
 
-With Live Edit you can select Styles and edit them on fly, without cluttering the the main prompt box or losing the original style. 
+With Live Edit you can select Styles and edit them on fly, without cluttering the the main prompt box or losing the original Style. 
 
-Each style will appear in their own textbox, and it is the content of these textboxes that get applied to the prompt, instead of the original style.<br/>
+Each Style will appear in their own textbox, and it is the content of these textboxes that get applied to the prompt, instead of the original Style.<br/>
 
-You can use Apply-button (🖫) to save the style, <ins>this will override the original style.</ins> <br/>
-You can create a new Style by changing the name of the style with ✎-button before saving with (🖫). 
+You can use Apply-button (🖫) to save the Style, <ins>this will override the original Style.</ins> <br/>
+You can create a new Style by changing the name of the Style with ✎-button before saving with (🖫). 
 
 The maximum number of Live Edits is 4. You can change the amount of visible Live Edits in the Extension settings.
 
 ## Wildcards
 You can select any Styles that you want with Wildcard-Dropdown and the script will automatically apply one of the randomly into the prompt.<br/>
 
-If you have **Dropout-mode** enabled in Extension setting, the same style can only be used once per process. <br/>
-When script chooses a style it automatically removes that style from other wildcards.<br/>
+If you have **Dropout-mode** enabled in Extension setting, the same Style can only be used once per process. <br/>
+When script chooses a Style it automatically removes that Style from other wildcards.<br/>
 
 The maximum number of wildcards is 6. You can change the amount of visible Wildcards in the Extension settings.
 
 ## What are Sections?
-In vanilla WebUI, if style contains {prompt} keyword, the UI will place the main prompt in that position, effectively splitting the style in 2 parts with main prompt in the middle.<br/>
+In vanilla WebUI, if Style contains {prompt} keyword, the UI will place the main prompt in that position, effectively splitting the Style in 2 parts with main prompt in the middle.<br/>
 
-This Extension takes use of that same functionality. If a style contains {prompt} or original {section} keywords, the style gets separated to Sections <br/>
+This Extension takes use of that same functionality. If a Style contains {prompt} or original {section} keywords, the Style gets separated to Sections <br/>
 
 In Live Edit and Wildcards Extra Settings, you can then pick which Sections you want to apply to the prompt. <br/>
 
 My most used use-case for this is when using Character-Styles with loras. <br/>
-By seperation loras/style and prompts to seperate Sections, I can easily use only the Character prompt without its default style/loras.
+By seperation loras/Style and prompts to seperate Sections, I can easily use only the Character prompt without its default Style/loras.
 
 <details>
   
@@ -88,7 +88,7 @@ If you use a Style that has multiple {prompt} keywords inside the vanilla Style-
 
 This issue can be averted by using {section} keyword instead. <br/>
 
-When using {section}-keyword inside vanilla Style-Dropdown, these styles are treated like normal un-splitted styles and {section} -keywords get removed.<br/>
+When using {section}-keyword inside vanilla Style-Dropdown, these Styles are treated like normal un-splitted Styles and {section} -keywords get removed.<br/>
 
 In eyes of the extension both {prompt} and {section} are interchangeable.
 
@@ -97,7 +97,7 @@ In eyes of the extension both {prompt} and {section} are interchangeable.
 
 <summary>Example</summary>
 
-Here is example of what happens when a style with multiple {prompt}/{section} gets used inside a vanilla Style Dropdown.<br/>
+Here is example of what happens when a Style with multiple {prompt}/{section} gets used inside a vanilla Style Dropdown.<br/>
 **Keep in mind that this does not apply to the extension itself!** 
 
 Main Prompt: <ins> **An awesome prompt with quality tags and stuff.** </ins>
@@ -115,7 +115,7 @@ Main Prompt: <ins> **An awesome prompt with quality tags and stuff.** </ins>
 ## Insert Points
 
 In case you are using something like Forge Couple or Regional Prompter, you can use **Insert Points**-functionality to inject the Live Edits and Wildcards to arbitrary points in your main prompt. 
-For example you can randomize styles and characters with wildcards. <br/>
+For example you can randomize Styles and characters with wildcards. <br/>
 
 Same Insertion Point can be used multiple times inside the same prompt and also by multiple Wildcards at the same time. 
 
