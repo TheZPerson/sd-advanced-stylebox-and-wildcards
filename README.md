@@ -1,5 +1,5 @@
 
-# sd-forge-advanced-Stylebox-and-widlcard
+# sd-forge-advanced-Stylebox-and-Widlcard
 Extension for SD Forge Neo, it is made of two components.
 
 First component **Live Edit** which creates customized Style Drodowns with lot of QoL features compared to regular Style Dropdown. <br/>
