@@ -142,6 +142,7 @@ This will put the UI under the main prompt boxes.
 
 
 Additionally I recommend setting User Interface>UI Alternatives>Prompt Layout to "Compact".<br/>
+(This setting may appear different on non-Neo forks!)
 
 <img width="637" height="217" alt="2026-07-28 233154" src="https://github.com/user-attachments/assets/733c1c23-ee4c-4a02-bb6b-400a7874a112" />
 
