@@ -1,0 +1,4 @@
+"""
+Author: TheZPerson
+License: MIT
+"""
