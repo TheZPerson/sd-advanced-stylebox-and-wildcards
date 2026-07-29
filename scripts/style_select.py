@@ -246,12 +246,12 @@ class StyleSelect(scripts.Script):
 
 
                     num_liveEdits = getattr(shared.opts, f"{extn_id}_visible_live_edits",1)
-                    with InputAccordion(False, label='Live Edit', visible = num_liveEdits > 0 ) as liveEdit_enable:
+                    with InputAccordion(False, label='Live Edits', visible = num_liveEdits > 0 ) as liveEdit_enable:
                    
                         liveEdits = []
 
                         for i in range(ST_arguments.total_live_Edits):
-                            liveEdits.append(LiveEdit(is_img2img, filterkey = f"Live{i+1}", label=getattr(shared.opts, f"{extn_id}_liveEdit_label{i+1}",f"{i+1}") , visible = num_liveEdits >= i+1))
+                            liveEdits.append(LiveEdit(is_img2img, filterkey = f"Live{i+1}", label=getattr(shared.opts, f"{extn_id}_liveEdit_label{i+1}",f"{i+1}") , visible = num_liveEdits >= i+1,index=i+1))
 
 
                         StyleSelect.ornagizeLiveEdits(num_liveEdits,orientation,is_img2img,liveEdits)
@@ -260,17 +260,17 @@ class StyleSelect(scripts.Script):
 
                     def createWildcard(index, filterkey, i_label):
 
-                         show = getattr(shared.opts, f"{extn_id}_visible_wildcards",1) >= index 
+                         show = getattr(shared.opts, f"{extn_id}_visible_wildcards",0) >= index 
 
                          with gr.Column(scale=1, visible = show,variant="compact" ):
                              with gr.Row(visible = True):
                                  refresh_btn = ToolButton('🗘', elem_id=f"ss_wc_rfr_wc_{filterkey}{index}", tooltip = "Refresh Styles", visible = (index == 1) ,elem_classes=[f"ss_styleresresh_btn"] )
-                                 drp =gr.Dropdown(choices= StyleSelect.styleCache[filterkey],elem_id= f"st_wc_{filterkey}_{index}",multiselect=True,label=f'🎲 {i_label}',allow_custom_value= False)
+                                 drp =gr.Dropdown(choices= StyleSelect.styleCache[filterkey],elem_id= f"st_wc_{filterkey}_{index}",multiselect=True,label=f'🎲 {i_label} ({index})',allow_custom_value= False)
                              with gr.Accordion("Extra Settings", open = False,  visible = getattr(shared.opts, f"{extn_id}_extras_wc",True)):
                                  with gr.Row(visible = True):
-                                    skipNegative = gr.Checkbox(label = "Skip Negative",elem_id=f"ss_wc_neguse_{filterkey}{index}",value = False,tooltip = "Do not use Negative Prompt?")
-                                    insert = gr.Text(label = "Insert Point",elem_id=f"ss_wc_ins_{filterkey}{index}", value = "", placeholder = "Insert Point", show_label = True, max_lines= 1, lines = 1 ,tooltip = "Replace this string in main prompt with Live Edits positive prompt") 
-                                    sect = gr.Text(show_label= True, label="Sections", elem_id=f"ss_wc_sect_{filterkey}{index}",value ="",placeholder = "0,1,2 empty = all",max_lines = 1, tooltip = "Pick which Sections (seperated by {prompt}) to apply to the prompt)")
+                                    skipNegative = gr.Checkbox(label = f"Skip Negative {index}",elem_id=f"ss_wc_neguse_{filterkey}{index}",value = False,tooltip = "Do not use Negative Prompt?")
+                                    insert = gr.Text(label = f"Insert Point {index}",elem_id=f"ss_wc_ins_{filterkey}{index}", value = "", placeholder = "Insert Point", show_label = True, max_lines= 1, lines = 1 ,tooltip = "Replace this string in main prompt with Live Edits positive prompt") 
+                                    sect = gr.Text(show_label= True, label=f"Sections {index}", elem_id=f"ss_wc_sect_{filterkey}{index}",value ="",placeholder = "0,1,2 empty = all",max_lines = 1, tooltip = "Pick which Sections (seperated by {prompt}) to apply to the prompt)")
                                     
                                
                          if show:
@@ -571,15 +571,15 @@ def on_ui_settings():
 
 
     for i in range(ST_arguments.total_live_Edits):
-        shared.opts.add_option(f"{extn_id}_liveEdit_label{i+1}",shared.OptionInfo(default = f"Live Edit {i+1}",label=f"Live Edit {i+1} Label",section=section).needs_reload_ui())    
+        shared.opts.add_option(f"{extn_id}_liveEdit_label{i+1}",shared.OptionInfo(default = f"Live Edit",label=f"Live Edit {i+1} Label",section=section).info('Changing this will make you lose current default values on this Live Edit').needs_reload_ui())    
 
         shared.opts.add_option(f"{extn_id}_liveEdit_filter{i+1}",shared.OptionInfo(default = "",label=f"Live Edit {i+1} Filter",
                 component=gr.Text,component_args= {"max_lines": 1},section=section))    
 
   
     for i in range(ST_arguments.total_wildcards):
-        shared.opts.add_option(f"{extn_id}_wildcards_label{i+1}",shared.OptionInfo(default = f"Wildcard {i}",label=f"Wildcard {i+1} Label",
-        component=gr.Text,component_args= {"max_lines": 1},section=section).needs_reload_ui())   
+        shared.opts.add_option(f"{extn_id}_wildcards_label{i+1}",shared.OptionInfo(default = f"Wildcard",label=f"Wildcard {i+1} Label",
+        component=gr.Text,component_args= {"max_lines": 1},section=section).info('Changing this will make you lose current default values on this Wildcard').needs_reload_ui())   
     
         shared.opts.add_option(f"{extn_id}_wildcards_filter{i+1}",shared.OptionInfo(default = "",label=f"Wildcards {i+1} Filter",
         component=gr.Text,component_args= {"max_lines": 1},section=section))  
@@ -593,8 +593,9 @@ script_callbacks.on_ui_settings(on_ui_settings)
 
 class LiveEdit():
 
-    def __init__(self,is_img2img, filterkey, label, visible):
-        self.filterkey = filterkey         
+    def __init__(self,is_img2img, filterkey, label, visible, index):
+        self.filterkey = filterkey     
+        self.index = f"# {index}"
         self.label = f"🎨 {label}"
         self.visible = visible
         self.enable : gr.Accordion = None
@@ -602,6 +603,7 @@ class LiveEdit():
         self.positive: gr.Textbox = None
         self.negative: gr.Textbox= None
 
+        self.skipNegative : gr.Textbox = None
         self.insertpoint : gr.Textbox = None
         self.section : gr.Text = None
         self.is_img2img = is_img2img
@@ -629,11 +631,11 @@ class LiveEdit():
     def createLiveEdit(self,is_img2img, create_refreshbutton = False):
             """Create the actual visual UI"""
 
-            with InputAccordion(True, label=self.label , visible = self.visible) as self.enable:
+            with InputAccordion(True, label=f"{self.label} ({self.index})" , visible = self.visible) as self.enable:
                 with gr.Column():
                         with gr.Row(variant="compact",elem_classes=[f"ss_style_dp_row"]):              
                             refresh_btn = ToolButton('🗘', elem_id=f"ss_le_rfr_{self.filterkey}", tooltip = "Refresh Styles", visible = create_refreshbutton ,elem_classes=[f"ss_styleresresh_btn"])
-                            self.dropdown = gr.Dropdown(choices= StyleSelect.styleCache[self.filterkey],multiselect=False,value = None,label=self.label,show_label=False,allow_custom_value= True) 
+                            self.dropdown = gr.Dropdown(choices= StyleSelect.styleCache[self.filterkey],multiselect=False,value = None,label=f"{self.label} {self.index}",show_label=False,allow_custom_value= True) 
 
                             with gr.Row(elem_classes=[f"ss_style_dp_row"]):
                         
@@ -652,24 +654,24 @@ class LiveEdit():
                             renameHide = ToolButton('👁',elem_classes=["tool"], elem_id=f"ss_le_rnmhide_{self.filterkey}",tooltip = "Hide This Field. (Use 🖫-button to apply rename)")
 
 
-                        self.positive = gr.Textbox(show_label= True, label="Positive",show_copy_button=True, placeholder = "Positive Prompt" ,elem_classes=["sts_multiinput", "prompt"], elem_id=f"le_inpt_{self.filterkey}_pos")
+                        self.positive = gr.Textbox(show_label= True, label=f"Positive {self.index}",show_copy_button=True, placeholder = "Positive Prompt" ,elem_classes=["sts_multiinput", "prompt"], elem_id=f"le_inpt_{self.filterkey}_pos")
                            
                         #Create negative prompt if user has not opted to put it in Extra Settings
                         if getattr(shared.opts, f"{extn_id}_negative_in_extras",False) is False:
-                            self.negative = gr.Textbox(show_label= True,label="Negative", show_copy_button = True, placeholder = "Negative Prompt" , elem_classes=["sts_multiinput", "prompt"], elem_id=f"le_inpt_{self.filterkey}_neg")
+                            self.negative = gr.Textbox(show_label= True,label=f"Negative {self.index}", show_copy_button = True, placeholder = "Negative Prompt" , elem_classes=["sts_multiinput", "prompt"], elem_id=f"le_inpt_{self.filterkey}_neg")
 
                         with gr.Accordion("Extra Settings", open = False, visible = getattr(shared.opts, f"{extn_id}_extras_le",True)):
 
                             #Create negative prompt if user has  opted to put it in Extra Settings
                             if getattr(shared.opts, f"{extn_id}_negative_in_extras",False) is True:
-                                self.negative = gr.Textbox(show_label= True,label="Negative", show_copy_button = True, placeholder = "Negative Prompt" , elem_classes=["sts_multiinput", "prompt"], elem_id=f"le_inpt_{self.filterkey}_neg")
+                                self.negative = gr.Textbox(show_label= True,label=f"Negative {self.index}", show_copy_button = True, placeholder = "Negative Prompt" , elem_classes=["sts_multiinput", "prompt"], elem_id=f"le_inpt_{self.filterkey}_neg")
 
                             with gr.Row():    
-                                self.skipNegative = gr.Checkbox(label = "Skip Negative",tooltip = "Do not use Negative Prompt?", value = False,elem_id=f"le_sendneg_{self.filterkey}")
+                                self.skipNegative = gr.Checkbox(label = f"Skip Negative {self.index}",tooltip = "Do not use Negative Prompt?", value = False,elem_id=f"le_sendneg_{self.filterkey}")
 
                             with gr.Row():
-                                self.insertpoint = gr.Text(show_label= True, label="Insert To",tooltip = "Replace this string in main prompt with Live Edits positive prompt",show_copy_button=True, value = "",elem_id=f"le_insert_{self.filterkey}")
-                                self.section = gr.Text(show_label= True, label="Sections", placeholder = "0,1,2 empty = all",max_lines = 1,tooltip = "Pick which Section (seperated by {prompt}) to apply to the prompt)",elem_id=f"le_sect_{self.filterkey}")
+                                self.insertpoint = gr.Text(show_label= True, label=f"Insert To {self.index}",tooltip = "Replace this string in main prompt with Live Edits positive prompt",show_copy_button=True, value = "",elem_id=f"le_insert_{self.filterkey}")
+                                self.section = gr.Text(show_label= True, label=f"Sections {self.index}", placeholder = "0,1,2 empty = all",max_lines = 1,tooltip = "Pick which Section (seperated by {prompt}) to apply to the prompt)",elem_id=f"le_sect_{self.filterkey}")
 
                         #Call function to refresh UI when Style selection has been changed by user.
                         self.dropdown.input(fn=self.UpdateLiveEdit,inputs = [self.dropdown], outputs = [self.positive , self.negative,liveEdit_rename_field])
