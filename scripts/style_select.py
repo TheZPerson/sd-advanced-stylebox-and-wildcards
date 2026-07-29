@@ -10,7 +10,7 @@ from ss_helpers.ss_helperclasses import ST_arguments,Split_prompt
 
 # variables
 extn_name = "Style Select"
-extn_id = "st2"
+extn_id = "st11"
 
 # regexes
 re_prompt = re.compile(r",? *\{(?:prompt|section)\} *,? *", re.I)
@@ -260,7 +260,7 @@ class StyleSelect(scripts.Script):
 
                     def createWildcard(index, filterkey, i_label):
 
-                         show = getattr(shared.opts, f"{extn_id}_visible_wildcards",0) >= index 
+                         show = getattr(shared.opts, f"{extn_id}_visible_wildcards",1) >= index 
 
                          with gr.Column(scale=1, visible = show,variant="compact" ):
                              with gr.Row(visible = True):
@@ -572,13 +572,12 @@ def on_ui_settings():
 
     shared.opts.add_option(f'{extn_id}_remove_comments_sending', shared.OptionInfo(False, "Remove Comment when using ⬆-button?", section=section).info('Does nothing if global Remove Comment setting is False').needs_reload_ui())  
 
-    shared.opts.add_option(f"{extn_id}_visible_live_edits",shared.OptionInfo(default=4,label="Number of Live Editor",
-            component=gr.Slider,component_args={"minimum": 0, "maximum": ST_arguments.total_live_Edits, "step": 1},section=section).needs_reload_ui())
+    shared.opts.add_option(f"{extn_id}_visible_live_edits",shared.OptionInfo(1,"Number of Live Editor", gr.Slider,{"minimum": 0, "maximum": ST_arguments.total_live_Edits, "step": 1},section=section).needs_reload_ui())
 
-    shared.opts.add_option(f"{extn_id}_max_le_per_row",shared.OptionInfo(default=2,label="Max. Live edits per row",
+    shared.opts.add_option(f"{extn_id}_max_le_per_row",shared.OptionInfo(2,label="Max. Live edits per row",
             component=gr.Slider,component_args={"minimum": 1, "maximum": 2, "step": 1},section=section,).needs_reload_ui())
 
-    shared.opts.add_option(f"{extn_id}_visible_wildcards",shared.OptionInfo(default=3,label="Number of Wildcards",
+    shared.opts.add_option(f"{extn_id}_visible_wildcards",shared.OptionInfo(1,label="Number of Wildcards",
             component=gr.Slider,component_args={"minimum": 0, "maximum": ST_arguments.total_wildcards, "step": 1},section=section,).needs_reload_ui())
 
 
