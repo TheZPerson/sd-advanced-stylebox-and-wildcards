@@ -1,6 +1,6 @@
 
 # sd-forge-advanced-Stylebox-and-Wildcards
-Extension for SD Forge Neo, it is made of two components.
+Extension for SD Forge Neo and related forks, it is made of two components.
 
 First component **Live Edit** which creates customized Style Drodowns with lot of QoL features compared to regular Style Dropdown. <br/>
 
@@ -18,6 +18,8 @@ Second Component is **Style Wildcards**, which is a whole new way to use wildcar
 + Automatic Style sorting
 
 ## Install
+> [!NOTE]
+> Please note that this Extension is still under testing. Please report any issues.
 
 Open your WebUIs Extension-Tab. Go to Install from URL tab > Paste this repo's URL into the first field > Click Install
 
@@ -86,8 +88,6 @@ Style: **masterpiece <lora:superMario:1>, 3d, <lora:eyesize:5> {prompt} mario, b
 | 1     |  mario, blue overall, blue eyes, mustache   | 
 
 </details>
-
-
 
 
 ## {section} vs. {prompt}
@@ -180,3 +180,9 @@ The main reason for this problem is that, if wildcards inside a batch result in 
 This workaround is not perfect, so if you run into issues I advice just using Batch Count > 1 instead.
 
 Alternatively if you know for the fact that this won't cause issues for you, you can disable this workaround from Extensions settings.
+
+## Combatibility
+Tested mainly on Neo. As far as I can tell it also worked on Classic and Reforge. 
+
+
+
