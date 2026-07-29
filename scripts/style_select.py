@@ -10,7 +10,7 @@ from ss_helpers.ss_helperclasses import ST_arguments,Split_prompt
 
 # variables
 extn_name = "Style Select"
-extn_id = "st11"
+extn_id = "st_public"
 
 # regexes
 re_prompt = re.compile(r",? *\{(?:prompt|section)\} *,? *", re.I)
