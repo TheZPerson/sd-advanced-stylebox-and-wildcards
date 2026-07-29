@@ -110,6 +110,16 @@ class Split_prompt():
         parts = re_prompt.split(text)
         return parts, negative
 
+    def applyToPrompt(self, mainprompt, segments, mode):
+
+        if mode == "After Main Prompt":
+            mainprompt = mainprompt + self.getSegments(segments)
+        else:
+            mainprompt = self.getSegments(segments) + mainprompt
+
+        return mainprompt
+
+
     def getMerged(self):
         """Return all section merged in single string"""
         return ",".join(self.prompt)

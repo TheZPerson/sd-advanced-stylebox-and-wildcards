@@ -313,7 +313,6 @@ class StyleSelect(scripts.Script):
             return copyofinput[0]
 
     
-    
     def process(self, p,*args):
 
         #Remove section tags, they are probably from default Style box or user prompt.
@@ -376,13 +375,7 @@ class StyleSelect(scripts.Script):
 
                  else:
 
-                     tmp = list(le.section)
-                      
-
-                     if len(tmp)>0:
-                        mainprompt +=prompt.getSegments(tmp)
-                     else:
-                       mainprompt +=prompt.getMerged()
+                     mainprompt = prompt.applyToPrompt(mainprompt,le.section, StyleSelect.styleApplySetting)
 
                      if not le.skipNegative:
                         collected_negative.append(prompt.neg)
@@ -440,11 +433,7 @@ class StyleSelect(scripts.Script):
                              all_insertpoints.append(inserpoint)
                          else:
 
-
-                             if StyleSelect.styleApplySetting == "After Main Prompt":
-                                mainprompt += prompt.getSegments(section)
-                             else:
-                                mainprompt = prompt.getSegments(section) +mainprompt
+                             mainprompt = prompt.applyToPrompt(mainprompt,section, StyleSelect.styleApplySetting)
 
                          if skipneg is False:
                             collected_negative.append(prompt.neg)
@@ -515,7 +504,7 @@ def on_ui_settings():
     ).needs_reload_ui())
 
     shared.opts.add_option( f"{extn_id}_promptApply",  shared.OptionInfo(
-        default="After Main Promp",
+        default="After Main Prompt",
         label="Apply Resulting Prompt?",
 
         component=gr.Dropdown,
@@ -542,7 +531,7 @@ def on_ui_settings():
             "choices": ("Before","After"),
         },
         section=section
-    ).needs_reload_ui())
+    ))
 
 
 
@@ -570,7 +559,7 @@ def on_ui_settings():
 
 
 
-    shared.opts.add_option(f'{extn_id}_remove_comments_sending', shared.OptionInfo(False, "Remove Comment when using ⬆-button?", section=section).info('Does nothing if global Remove Comment setting is False').needs_reload_ui())  
+    shared.opts.add_option(f'{extn_id}_remove_comments_sending', shared.OptionInfo(False, "Remove Comment when using Send to Prompt(⬆)-button?", section=section).info('Does nothing if global Remove Comment setting is False').needs_reload_ui())  
 
     shared.opts.add_option(f"{extn_id}_visible_live_edits",shared.OptionInfo(1,"Number of Live Editor", gr.Slider,{"minimum": 0, "maximum": ST_arguments.total_live_Edits, "step": 1},section=section).needs_reload_ui())
 
