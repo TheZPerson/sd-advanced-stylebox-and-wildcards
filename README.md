@@ -25,7 +25,7 @@ Or
 
 Manually clone this repo into your extensions folder:
 
-`git clone https://github.com/TheZPerson/sd-advanced-Stylebox-and-wildcards`
+`git clone https://github.com/TheZPerson/sd-advanced-stylebox-and-wildcards`
 
 To ensure maximum compatibility, this extension should run as early as possible. At least before any other extension that use the prompt.
 Easiest way to do this is rename the extensions install folder to something like: 0-sd-advanced-Stylebox-and-wildcards
