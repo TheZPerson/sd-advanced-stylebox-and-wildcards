@@ -1,8 +1,8 @@
 
 # sd-forge-advanced-Stylebox-and-Wildcards
-Extension for SD Forge Neo and related forks, it is made of two components.
+Extension for SD Forge Neo and related forks, it is made of two components. This is somewhat generalized version of my personal extension. 
 
-First component **Live Edit** which creates customized Style Drodowns with lot of QoL features compared to regular Style Dropdown. <br/>
+First component **Live Edit** which creates customized Style Dropdowns with lot of QoL features compared to regular Style Dropdown. <br/>
 
 Second Component is **Style Wildcards**, which is a whole new way to use wildcards by simply selecting Styles from a Dropdown.
 
@@ -38,7 +38,7 @@ Easiest way to do this is rename the extensions install folder to something like
 
 
 ## Live Edit
-I am heavy user of Styles in WebUI, but they come with certain incoveniences. 
+I am heavy user of Styles in WebUI, but they come with certain inconveniences. 
 
 How Styles affect the image are often affected by other loras, alternative models or just AIs mood.<br/>
 I frequently find it necessary to tweak Styles to get the result I want, but to do that I must either the apply the Style to the prompt box or permanently modify the Style. <br/>
