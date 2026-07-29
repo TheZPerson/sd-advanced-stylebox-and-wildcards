@@ -30,6 +30,10 @@ Manually clone this repo into your extensions folder:
 To ensure maximum compatibility, this extension should run as early as possible. At least before any other extension that use the prompt.
 Easiest way to do this is rename the extensions install folder to something like: 0-sd-advanced-Stylebox-and-wildcards
 
+> [!WARNING]
+> On Forge Classic I noticed a bug, that causes WebUI to not load Setting-Slider defaults correctly.<br/>
+> To get around this, I have for now set default number of both elements to 1. To add more,  go to the settings and adjust  "Number of Live Editor" and "Number of Wildcards" to higher values. 
+
 
 ## Live Edit
 I am heavy user of Styles in WebUI, but they come with certain incoveniences. 
