@@ -1,6 +1,6 @@
 
 # sd-forge-advanced-Stylebox-and-Wildcards
-Extension for SD Forge Neo and related forks, it is made of two components.
+Extension for SD Forge Neo and related forks, it is made of two components. This is somewhat generalized version of my personal extension. 
 
 First component **Live Edit** which creates customized Style Dropdowns with lot of QoL features compared to regular Style Dropdown. <br/>
 
