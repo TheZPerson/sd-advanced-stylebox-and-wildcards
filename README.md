@@ -48,7 +48,7 @@ With Live Edit you can select Styles and edit them on fly, without cluttering th
 Each Style will appear in their own textbox, and it is the content of these textboxes that get applied to the prompt, instead of the original Style.<br/>
 
 You can use Apply-button (🖫) to save the Style, <ins>this will override the original Style.</ins> <br/>
-You can create a new Style by changing the name of the Style with ✎-button before saving with (🖫). 
+You can create a new Style with Save as (+)-button. 
 
 The maximum number of Live Edits is 4. You can change the amount of visible Live Edits in the Extension settings.
 
