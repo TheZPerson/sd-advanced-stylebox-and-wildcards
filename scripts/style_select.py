@@ -645,9 +645,8 @@ class LiveEdit():
                                     StyleSelect.STYLE_DROPDOWNS[is_img2img].append([self.dropdown,self.filterkey,refresh_btn])
                                
                                 send = ToolButton('⬆',  elem_id=f"ss_le_send_{self.filterkey}",  tooltip = "Send To Prompt")   
-
-                                rename = ToolButton('✎',  elem_id=f"ss_le_rnm_{self.filterkey}",  tooltip = "Save As New")   
                                 apply = ToolButton('🖫', elem_id=f"ss_le_app_{self.filterkey}",tooltip = "Save Style")
+                                rename = ToolButton('➕',  elem_id=f"ss_le_rnm_{self.filterkey}",  tooltip = "Save as new")   
 
                         #Create hidden rename field
                         row = gr.Row(visible = False)
