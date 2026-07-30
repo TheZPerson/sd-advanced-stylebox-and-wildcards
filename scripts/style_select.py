@@ -177,14 +177,19 @@ class StyleSelect(scripts.Script):
 
     def ornagizeLiveEdits(numbervisible,orientation,is_img2img,liveEdits):
 
-        if orientation == "Vertical":
-
-            if numbervisible == 1:
-
+        def createSimple():
+             with gr.Column(scale=1):
                 liveEdits[0].createLiveEdit(is_img2img, True)
                 liveEdits[1].createLiveEdit(is_img2img)
                 liveEdits[2].createLiveEdit(is_img2img)
                 liveEdits[3].createLiveEdit(is_img2img)
+
+        if orientation == "Vertical":
+
+            if numbervisible == 1:
+
+                createSimple()
+
             elif numbervisible == 2 :
 
                 container = gr.Row(variant="compact") if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 2 else gr.Column()
@@ -194,8 +199,7 @@ class StyleSelect(scripts.Script):
                     liveEdits[0].createLiveEdit(is_img2img, True)
                     
                     liveEdits[1].createLiveEdit(is_img2img)
- 
-                
+                 
                 liveEdits[2].createLiveEdit(is_img2img)
                 liveEdits[3].createLiveEdit(is_img2img)
 
@@ -221,17 +225,9 @@ class StyleSelect(scripts.Script):
                     liveEdits[2].createLiveEdit(is_img2img, True)
                     liveEdits[3].createLiveEdit(is_img2img)
             else:
-                with gr.Column(scale=1):
-                    liveEdits[0].createLiveEdit(is_img2img, True)
-                    liveEdits[1].createLiveEdit(is_img2img)
-                    liveEdits[2].createLiveEdit(is_img2img)
-                    liveEdits[3].createLiveEdit(is_img2img)
+                 createSimple()
         else:
-            with gr.Column(scale=1):
-                liveEdits[0].createLiveEdit(is_img2img, True)
-                liveEdits[1].createLiveEdit(is_img2img)
-                liveEdits[2].createLiveEdit(is_img2img)
-                liveEdits[3].createLiveEdit(is_img2img)
+             createSimple()
 
     def createUI(is_img2img):
 
@@ -242,8 +238,6 @@ class StyleSelect(scripts.Script):
 
 
                 with container:
-
-
 
                     num_liveEdits = getattr(shared.opts, f"{extn_id}_visible_live_edits",1)
                     with InputAccordion(False, label='Live Edits', visible = num_liveEdits > 0 ) as liveEdit_enable:
@@ -257,7 +251,6 @@ class StyleSelect(scripts.Script):
                         StyleSelect.ornagizeLiveEdits(num_liveEdits,orientation,is_img2img,liveEdits)
 
 
-
                     def createWildcard(index, filterkey, i_label):
 
                          show = getattr(shared.opts, f"{extn_id}_visible_wildcards",0) >= index 
@@ -266,6 +259,7 @@ class StyleSelect(scripts.Script):
                              with gr.Row(visible = True):
                                  refresh_btn = ToolButton('🗘', elem_id=f"ss_wc_rfr_wc_{filterkey}{index}", tooltip = "Refresh Styles", visible = (index == 1) ,elem_classes=[f"ss_styleresresh_btn"] )
                                  drp =gr.Dropdown(choices= StyleSelect.styleCache[filterkey],elem_id= f"st_wc_{filterkey}_{index}",multiselect=True,label=f'🎲 {i_label} ({index})',allow_custom_value= False)
+
                              with gr.Accordion("Extra Settings", open = False,  visible = getattr(shared.opts, f"{extn_id}_extras_wc",True)):
                                  with gr.Row(visible = True):
                                     skipNegative = gr.Checkbox(label = f"Skip Negative {index}",elem_id=f"ss_wc_neguse_{filterkey}{index}",value = False,tooltip = "Do not use Negative Prompt?")
@@ -357,10 +351,6 @@ class StyleSelect(scripts.Script):
                  prompt = Split_prompt(inputString=le.positive, negative= le.negative)
 
 
-
-
-
-
                  if inserpointExists:
 
                       output = prompt.getSegments(le.section)
@@ -379,7 +369,6 @@ class StyleSelect(scripts.Script):
 
                      if not le.skipNegative:
                         collected_negative.append(prompt.neg)
-
 
 
                  return mainprompt
@@ -519,7 +508,7 @@ def on_ui_settings():
 
     shared.opts.add_option(f"{extn_id}_enable_force_same_seed", shared.OptionInfo(True, " Implement Batch Size Fix ", section=section).info("Force-enable variation-mode when Batch size>1. Variation strength will be 1 if current value is 0  (Strongy Recommended to keep Enabled!"))
 
-    shared.opts.add_option(f"{extn_id}_insertUI_ID", shared.OptionInfo("", "UI Insertion ID", section=section).info('Insert Tool before/after specific object by id. (Id for underthe  main prompt is: neg_prompt_row)').needs_reload_ui())   
+    shared.opts.add_option(f"{extn_id}_insertUI_ID", shared.OptionInfo("", "UI Insertion ID", section=section).info('Insert Tool before/after specific object by id. (Id for under the  main prompt is: neg_prompt_row)').needs_reload_ui())   
 
     shared.opts.add_option( f"{extn_id}_insertUI_method",  shared.OptionInfo(
         default="After",
