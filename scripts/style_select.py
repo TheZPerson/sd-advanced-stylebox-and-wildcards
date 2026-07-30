@@ -643,8 +643,10 @@ class LiveEdit():
                             
                                 if self.visible:
                                     StyleSelect.STYLE_DROPDOWNS[is_img2img].append([self.dropdown,self.filterkey,refresh_btn])
-                                rename = ToolButton('✎',  elem_id=f"ss_le_rnm_{self.filterkey}",  tooltip = "Open Rename Field")   
+                               
                                 send = ToolButton('⬆',  elem_id=f"ss_le_send_{self.filterkey}",  tooltip = "Send To Prompt")   
+
+                                rename = ToolButton('✎',  elem_id=f"ss_le_rnm_{self.filterkey}",  tooltip = "Save As New")   
                                 apply = ToolButton('🖫', elem_id=f"ss_le_app_{self.filterkey}",tooltip = "Save Style")
 
                         #Create hidden rename field
@@ -652,7 +654,7 @@ class LiveEdit():
                         with row:                                    
                             liveEdit_rename_field = gr.Textbox(label='Rename')
                             renameHide = ToolButton('👁',elem_classes=["tool"], elem_id=f"ss_le_rnmhide_{self.filterkey}",tooltip = "Hide This Field. (Use 🖫-button to apply rename)")
-
+                            apply2 = ToolButton('🖫', elem_id=f"ss_le_app_{self.filterkey}_2",tooltip = "Save Style")
 
                         self.positive = gr.Textbox(show_label= True, label=f"Positive {self.index}",show_copy_button=True, placeholder = "Positive Prompt" ,elem_classes=["sts_multiinput", "prompt"], elem_id=f"le_inpt_{self.filterkey}_pos")
                            
@@ -702,6 +704,7 @@ class LiveEdit():
 
 
                         apply.click(applywrap, inputs = [liveEdit_rename_field,self.positive,  self.negative], outputs = [row, self.dropdown])
+                        apply2.click(applywrap, inputs = [liveEdit_rename_field,self.positive,  self.negative], outputs = [row, self.dropdown])
                         
                         #Create Dummy Statse that get send to javascript to determine is_img2img state, these could be moved elsewhere prevent duplication
                         ist21 = gr.Checkbox(value = is_img2img, visible = False)
