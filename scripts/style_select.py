@@ -204,25 +204,34 @@ class StyleSelect(scripts.Script):
                 liveEdits[3].createLiveEdit(is_img2img)
 
             elif numbervisible == 3:
-                  container = gr.Row(equal_height=False, variant="compact") if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 2 else gr.Column()
+                  container = gr.Row(equal_height=False, variant="compact") if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) > 1 else gr.Column()
 
                   with container:
                         liveEdits[0].createLiveEdit(is_img2img, True)
                         liveEdits[1].createLiveEdit(is_img2img)
-                  with gr.Row():
-                        liveEdits[2].createLiveEdit(is_img2img)
+
+                        if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 3:
+                            liveEdits[2].createLiveEdit(is_img2img)
+
+                  if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 2:
+                      with gr.Row():
+                            liveEdits[2].createLiveEdit(is_img2img)
                   liveEdits[3].createLiveEdit(is_img2img)
 
             elif numbervisible == 4:
-                  container1 = gr.Row(variant="compact") if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 2 else gr.Column()
-                  container2 = gr.Row(variant="compact") if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 2 else gr.Column()
+                  container1 = gr.Row(variant="compact") if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) >= 2 else gr.Column()
+                  container2 = gr.Row(variant="compact") if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) >= 2 else gr.Column()
 
                   with container1:
                     liveEdits[0].createLiveEdit(is_img2img, True)
                     liveEdits[1].createLiveEdit(is_img2img)
 
+                    if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 3:
+                        liveEdits[2].createLiveEdit(is_img2img)
+
                   with container2:
-                    liveEdits[2].createLiveEdit(is_img2img, True)
+                    if getattr(shared.opts, f"{extn_id}_max_le_per_row",2) == 2:
+                        liveEdits[2].createLiveEdit(is_img2img, True)
                     liveEdits[3].createLiveEdit(is_img2img)
             else:
                  createSimple()
@@ -553,7 +562,7 @@ def on_ui_settings():
     shared.opts.add_option(f"{extn_id}_visible_live_edits",shared.OptionInfo(1,"Number of Live Editor", gr.Slider,{"minimum": 0, "maximum": ST_arguments.total_live_Edits, "step": 1},section=section).needs_reload_ui())
 
     shared.opts.add_option(f"{extn_id}_max_le_per_row",shared.OptionInfo(2,label="Max. Live edits per row",
-            component=gr.Slider,component_args={"minimum": 1, "maximum": 2, "step": 1},section=section,).needs_reload_ui())
+            component=gr.Slider,component_args={"minimum": 1, "maximum": 3, "step": 1},section=section,).needs_reload_ui())
 
     shared.opts.add_option(f"{extn_id}_visible_wildcards",shared.OptionInfo(1,label="Number of Wildcards",
             component=gr.Slider,component_args={"minimum": 0, "maximum": ST_arguments.total_wildcards, "step": 1},section=section,).needs_reload_ui())
