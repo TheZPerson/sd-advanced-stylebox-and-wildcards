@@ -63,6 +63,8 @@ class StyleSelect(scripts.Script):
     sorting_priority = getattr(shared.opts, f"{extn_id}_sortOrder",-997)
     insert_id = getattr(shared.opts, f"{extn_id}_insertUI_ID","")
     insert_method = getattr(shared.opts, f"{extn_id}_insertUI_method","")
+    les_inUse = getattr(shared.opts, f"{extn_id}_visible_live_edits",1)
+    wcs_inUse = getattr(shared.opts, f"{extn_id}_visible_wildcards",1)
     styleCache = None
 
     styleApplySetting =  getattr(shared.opts, f"{extn_id}_promptApply","Before Main Prompt")
@@ -256,16 +258,16 @@ class StyleSelect(scripts.Script):
 
                 with container:
 
-                    num_liveEdits = getattr(shared.opts, f"{extn_id}_visible_live_edits",1)
-                    with InputAccordion(False, label='Live Edits', visible = num_liveEdits > 0 ) as liveEdit_enable:
+                    
+                    with InputAccordion(False, label='Live Edits', visible = StyleSelect.les_inUse > 0 ) as liveEdit_enable:
                    
                         liveEdits = []
 
                         for i in range(ST_arguments.total_live_Edits):
-                            liveEdits.append(LiveEdit(is_img2img, filterkey = f"Live{i+1}", label=getattr(shared.opts, f"{extn_id}_liveEdit_label{i+1}",f"{i+1}") , visible = num_liveEdits >= i+1,index=i+1))
+                            liveEdits.append(LiveEdit(is_img2img, filterkey = f"Live{i+1}", label=getattr(shared.opts, f"{extn_id}_liveEdit_label{i+1}",f"{i+1}") , visible = StyleSelect.les_inUse >= i+1,index=i+1))
 
 
-                        StyleSelect.ornagizeLiveEdits(num_liveEdits,orientation,is_img2img,liveEdits)
+                        StyleSelect.ornagizeLiveEdits(StyleSelect.les_inUse,orientation,is_img2img,liveEdits)
 
 
                     def createWildcard(index, filterkey, i_label):
@@ -415,6 +417,7 @@ class StyleSelect(scripts.Script):
 
                  
                  wc = list(wildcard)
+                 wc = wc[0:StyleSelect.wcs_inUse]
 
                  #if wildcards are set to dropout mode, remove all previously selected wildcards from the list by creating temporary clone
                  if getattr(shared.opts, f"{extn_id}_wc_dropout",False) is True:
@@ -446,11 +449,15 @@ class StyleSelect(scripts.Script):
 
                  return mainprompt
 
-              if st_args.liveEdit_enable is True:
-                  for le in st_args.liveEdits:
+
+
+
+
+              if st_args.liveEdit_enable is True and StyleSelect.les_inUse>0:
+                  for le in st_args.liveEdits[0:StyleSelect.les_inUse]:
                     inputPrompt= ApplyLiveEdit(inputPrompt,le)
 
-              if st_args.wildcards_enable is True:
+              if st_args.wildcards_enable is True and StyleSelect.wcs_inUse > 0:
                 for wc in randomizedwithInsert:
                   inputPrompt = ApplyWildcards(inputPrompt, wc[0],wc[1],wc[2],wc[3])
 
