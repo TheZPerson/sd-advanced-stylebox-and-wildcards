@@ -272,7 +272,7 @@ class StyleSelect(scripts.Script):
 
                     def createWildcard(index, filterkey, i_label):
 
-                         show = getattr(shared.opts, f"{extn_id}_visible_wildcards",0) >= index 
+                         show = StyleSelect.wcs_inUse >= index 
 
                          with gr.Column(scale=1, visible = show,variant="compact" ):
                              with gr.Row(visible = True):
@@ -292,7 +292,7 @@ class StyleSelect(scripts.Script):
                          return [drp,insert,sect,skipNegative]
 
                     wildcards = []
-                    with InputAccordion(False, label='Wildcards', visible =  getattr(shared.opts, f"{extn_id}_visible_wildcards",1) > 0) as wildcards_enabled:
+                    with InputAccordion(False, label='Wildcards', visible =  StyleSelect.wcs_inUse > 0) as wildcards_enabled:
                          with gr.Row(visible = True):
                             for i in range(ST_arguments.total_wildcards):
                                 wildcards.extend(createWildcard(i+1, f"WC{i+1}",getattr(shared.opts, f"{extn_id}_wildcards_label{i+1}",f"{i+1}")))
